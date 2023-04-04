@@ -7,7 +7,7 @@ from rest_framework import status
 
 @api_view(['GET', 'POST'])
 
-def drink_list(request):
+def drink_list(request, format=None):
 
     # GET request function
     if request.method == 'GET': 
@@ -27,7 +27,7 @@ def drink_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def drink_detail(request, id ):
+def drink_detail(request, id, format=None ):
 
     #pk: primary key
     try:
