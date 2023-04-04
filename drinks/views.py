@@ -35,12 +35,18 @@ def drink_detail(request, id ):
     except Drink.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
+    #get specific drink by id
     if request.method == 'GET':
         serializer = DrinkSerializer(drink)
         return Response(serializer.data)
 
+    #updating data
     elif request.method == 'PUT':
-        pass
+        serializer = DrinkSerializer(drink, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
         pass
